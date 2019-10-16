@@ -1,23 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#define ROW 100
+#define COLUMN 14
 //#define _CRT_SECURE_NO_WARNINGS
 
 int main()
 {
-    char buffer[100000]={0};
-    FILE* fp=fopen("011_Source.txt","r");
-    //fget(buffer,sizeof(buffer),fp); //if meet \n, or read NULL End
+    char buffer[6000]={0};
+    unsigned long long int nptr=0;
+    unsigned long long int digitArr[200]={0};
+
+    FILE* fp=fopen("013_Source.txt","r");
     fread(buffer,sizeof(buffer),1,fp); //read anyway, even fail return maxsize-1
-    for (int i=0; i<10; i++)
+    for(int i=0;i<COLUMN; i++)
     {
-        printf("%c",buffer[i+55]);
-        if(buffer[i+55]==' '||buffer[i+55]=='\n') printf("N");
+        for(int j=0;j<ROW;j++)
+        {
+            digitArr[i]+=(buffer[51*j+i]-'0');
+        }
     }
-    for (int j=0; j<10; j++)
+    for(int i=0;i<COLUMN;i++)
     {
-        printf("\n%d", buffer[j]);
+        unsigned long long int pow=1;
+        for(int j=0;j<=i;j++)
+        {
+            pow*=10;
+        }
+        pow/=10;
+        nptr+=pow*digitArr[COLUMN-1-i];
     }
-    printf("\n");
+    printf("%llu\n",nptr);
     fclose(fp);
     return 0;
 }

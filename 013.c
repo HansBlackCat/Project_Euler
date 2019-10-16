@@ -1,61 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define ARR_FULL 5010
-#define ARR_SRT 105
-#define BUFF 2
-int MALLOC_SIZE=sizeof(char)*ARR_FULL*BUFF;
-int fileToken(char* src[], char* ipt);
+#include <math.h>
+#define ROW 100
+#define COLUMN 14
+//#define _CRT_SECURE_NO_WARNINGS
 
-void main()
+int main()
 {
-    char* ipt=(char*)malloc(MALLOC_SIZE);
-    FILE* file_key;
-    file_key=fopen("013_Source.txt","r");
+    char buffer[6000]={0};
+    unsigned long long int nptr=0;
+    unsigned long long int digitArr[200]={0};
 
-    int arr[2010];
-    
-    for(int i=0;i<2000;i++) fscanf(file_key,"%d",&arr[i]);
-    for(int i=0;i<2000;i++) printf("# is: %d\n",arr[i]);
-
-    fclose(file_key);
-}
-
-int fileToken(char* srci[], char* ipt)
-{
-    int i=0;
-    char* ptr=strtok(ipt,"\n");
-    
-    while(ptr!=NULL)
+    FILE* fp=fopen("013_Source.txt","r");
+    fread(buffer,sizeof(buffer),1,fp); //read anyway, even fail return maxsize-1
+    for(int i=0;i<COLUMN; i++)
     {
-        src[i]=ptr;
-        ptr=strtok(NULL,";");
-        i++
+        for(int j=0;j<ROW;j++)
+        {
+            digitArr[i]+=(buffer[51*j+i]-'0');
+        }
     }
-    return i;
+    for(int i=0;i<COLUMN;i++)
+    {
+        unsigned long long int pow=1;
+        for(int j=0;j<=i;j++)
+        {
+            pow*=10;
+        }
+        pow/=10;
+        nptr+=pow*digitArr[COLUMN-1-i];
+    }
+    printf("%llu\n",nptr);
+    fclose(fp);
+    return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
