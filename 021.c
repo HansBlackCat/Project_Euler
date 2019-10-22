@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define NUM_UNDER 10000
+#define MAX 10000
 
 int main()
 {
-    long dev[20000][2]={0}; //arg1 - n, arg2 - sum of devisor of n
-    //long** dev=(long**)malloc(sizeof(long*)*1000*2);
+    int dev[20000][2]={0};
+    //long** dev=(long**)malloc(sizeof(long*)*MAX*2);
     //for(int i=0;i<2;i++) dev[i]=(long*)malloc(sizeof(long)*2*2);
-
-    for(int i=1;i<=NUM_UNDER;i++)
+    
+    for(int i=1;i<=MAX;i++)
     {
         dev[i][0]=i;
         int ctr=i;
@@ -20,4 +20,19 @@ int main()
         }
         dev[i][1]=sum;
     }
-}
+    int sum=0;
+    for(int i=1;i<=MAX;i++) //HERE PROBLEM
+    {
+        for(int j=i;j<=MAX;i++)
+        {
+            if(dev[i][0]==dev[j][1]&&dev[i][1]==dev[j][0])
+            {
+                sum+=(i+j);
+            }
+        }
+    }
+}/*
+    //for(int i=0;i<2;i++) free(dev[i]);
+    //free(dev);
+    printf("%d",sum);
+}*/
