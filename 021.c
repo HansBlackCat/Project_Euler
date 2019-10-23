@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 10000
-#define K 10
 
 int main()
 {
@@ -22,18 +21,18 @@ int main()
         dev[i][1]=sum;
     }
     int sum=0;
-    for(int i=1;i<=MAX;i++) //HERE PROBLEM
+    for(int i=1;i<=MAX;i++) 
     {
-        for(int j=i;j<=MAX;i++)
+        for(int j=i;j<=MAX;j++)
         {
             if(dev[i][0]==dev[j][1]&&dev[i][1]==dev[j][0])
             {
-                sum+=(i+j);
+                if(i!=j) sum+=(i+j);
             }
         }
     }
-}/*
     //for(int i=0;i<2;i++) free(dev[i]);
     //free(dev);
     printf("%d",sum);
-}*/
+}
+
