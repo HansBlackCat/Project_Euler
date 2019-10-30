@@ -8,30 +8,10 @@
 
 int main()
 {
-    char buffer[6000]={0};
-    unsigned long long int nptr=0;
-    unsigned long long int digitArr[200]={0};
-
-    FILE* fp=fopen("013_Source.txt","r");
-    fread(buffer,sizeof(buffer),1,fp); //read anyway, even fail return maxsize-1
-    for(int i=0;i<COLUMN; i++)
-    {
-        for(int j=0;j<ROW;j++)
-        {
-            digitArr[i]+=(buffer[51*j+i]-'0');
-        }
-    }
-    for(int i=0;i<COLUMN;i++)
-    {
-        unsigned long long int pow=1;
-        for(int j=0;j<=i;j++)
-        {
-            pow*=10;
-        }
-        pow/=10;
-        nptr+=pow*digitArr[COLUMN-1-i];
-    }
-    printf("%llu\n",nptr);
-    fclose(fp);
-    return 0;
+    char a='A';
+    char b='B';
+    printf("%d\n",(int)a);
+    if((int)a>(int)b) printf("a>b\n");
+    else if((int)a==(int)b) printf("a==b\n");
+    else printf("a<b\n");
 }
