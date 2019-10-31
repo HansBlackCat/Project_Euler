@@ -7,14 +7,14 @@ int pnumChecker(int n);
 
 int main()
 {
-    int* pNum=(int*)malloc(sizeof(int)*10000*2);
-    int* arr=(int*)malloc(sizeof(int)*100000000*2);
+    int* pNum=(int*)malloc(sizeof(int)*10000*2); //abundant # collect array
+    int* arr=(int*)malloc(sizeof(int)*100000000*2); //sum of two abundant # array
     memset(pNum,0,sizeof(int)*10000*2);
     memset(arr,0,sizeof(int)*100000000*2);
-    int token=0;
-    long tot=0;
+    int token=0; //prefect # checker's token
+    long tot=0; //ans
     
-    for(int i=0;i<MAX;i++)
+    for(int i=0;i<MAX;i++) //check if it's abundant #
     {
         if(pnumChecker(i)==2) 
         {
@@ -22,17 +22,15 @@ int main()
             token++;
         }
     }
-    printf("%d %d\n",token-1,pNum[token-1]);
 
     int arr_dir=0;
-    int cnt=1;
-    while(pNum[cnt]!=0)///
+    int cnt=0;
+    while(pNum[cnt]!=0) //sum of two abundant
     {
-        for(int cnt_f=0;cnt_f<cnt;cnt_f++)
+        for(int cnt_f=0;cnt_f<=cnt;cnt_f++)
         {
             int sum=pNum[cnt]+pNum[cnt_f];
-            int ctr=0;
-            if(ctr==0||sum<MAX) 
+            if(sum<MAX) 
             {
                 arr[arr_dir]=sum;
                 arr_dir++;
@@ -40,16 +38,24 @@ int main()
         }
         cnt++;
     }
+
+    int tot_arr[MAX]={0}; //fill array with value==subscript
     for(int i=0;i<MAX;i++)
     {
-        tot+=i;
+        tot_arr[i]=i;
     }
-    printf("%ld\n",tot);
-    for(int i=0;i<arr_dir;i++)
+    for(int i=0;i<arr_dir;i++) //make tot_arr[i] 0, if there are same # in sum dictionary
     {
-        tot-=arr[i];
+        int dic_temp=arr[i];
+        tot_arr[dic_temp]=0;
     }
-    printf("%ld\n",tot);
+    
+    int tot_sum=0;
+    for(int i=0;i<MAX;i++)
+    {
+        tot_sum+=tot_arr[i];
+    }
+    printf("%d\n",tot_sum);
 
     free(pNum);
     free(arr);
