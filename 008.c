@@ -22,8 +22,8 @@ int main()
         }
     }
     
-    int bin_all[8][3]={0};
-    for (int i = 1; i < 8; ++i) {
+    int bin_all[8192][13]={0};
+    for (int i = 1; i < 8192; ++i) {
         for (int j = 0; j < i; ++j) {
             bin_add(bin_all[i]);
         }
@@ -32,10 +32,10 @@ int main()
     int sum_cnr=0;
     for (int i = 0; i < 20/*20*/; ++i) {
         for (int j = 0; j < 50/*50*/; ++j) {
-            for (int k = 0; k < 8; ++k) {
+            for (int k = 0; k < 8192; ++k) {
                 sum[sum_cnr]=(int)mat[i][j]-'0';
                 int i_temp=i,j_temp=j;
-                for (int h = 0; h < 3; ++h) {
+                for (int h = 0; h < 13; ++h) {
                     if ((i_temp+1)<20&&bin_all[k][h]==0) {
                         i_temp++;
                         sum[sum_cnr]*=(int)(mat[i_temp][j_temp]-'0');
@@ -50,10 +50,9 @@ int main()
             }
         }
     }
-
     /*Bubble Sort*/
-    for (int i = 0; i < 8000; ++i) {
-        for (int j = 0; j < 8000; ++j) {
+    for (int i = 0; i < 8192000; ++i) {
+        for (int j = 0; j < 8192000; ++j) {
             int sort_temp=0;
             if (sum[j]<sum[j+1]) {
                 sort_temp=sum[j+1];
@@ -68,12 +67,11 @@ int main()
     int wle_spc=0;
     while(wle_spc<30) {
         if (sum[wle_cnr]!=sum[wle_cnr+1]) {
-            printf("%d\n", sum[wle_cnr]);
+            printf("#%d(%d): %d\n", wle_spc+1, wle_cnr+1, sum[wle_cnr]);
             wle_spc++;
         }
         wle_cnr++;
     }
-    
     free(sum);
 }
 
