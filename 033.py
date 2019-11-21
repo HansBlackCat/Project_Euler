@@ -1,4 +1,6 @@
 #!/usr/vin/env python3
+import re
+from fractions import Fraction
 
 def Canc(i):
     A = list(str(arr[i][0]))
@@ -31,9 +33,25 @@ for i in range(len(arr)):
     if Canc(i):
         ans_arr.append(arr[i])
 
+f=open("Prime_num.txt",'r')
+rec=re.compile(r"(?P<PRIME>\d+) ")
+line=f.read()
+arr=rec.findall(line)
+Prime_arr=[]
+for i in arr: Prime_arr.append(int(i))
+f.close()
+
+Tot_ENM=1
+Tot_DNM=1
+for i in range(len(ans_arr)):
+    Tot_ENM*=ans_arr[i][0]
+    Tot_DNM*=ans_arr[i][1]
+
+FRAC=Fraction(Tot_ENM,Tot_DNM)
 
 print(ans_arr)
+print((Tot_ENM,Tot_DNM))
+print(FRAC)
 
 
 
-#print(arr)

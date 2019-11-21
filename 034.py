@@ -19,4 +19,4 @@ for i in range(3,10**8):
         ans_arr.append(i)
 
 print(ans_arr)
-
+print(sum(ans_arr))
