@@ -25,7 +25,7 @@ for i in arr: Prime_arr.append(i)
 f.close()
 """
 i=32
-print(
+print( 
     str(tup2int(list(itertools.permutations(list(str(i))))[0])),
     #list(itertools.permutations(list(str(i)))),
     str(tup2int(list(itertools.permutations(list(str(i))))[0])) in Prime_arr,
