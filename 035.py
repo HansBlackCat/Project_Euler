@@ -35,10 +35,9 @@ print(
 
 counter=0
 for i in Prime_arr:
-    if int(i)>100: break
+    if int(i)>1000000: break
     INDEX=0
     temp=list(i)
-    #temp2=list(itertools.permutations(temp)) #not permut, Rot
     temp2=introt(temp)
     for j in range(len(temp2)):
         if str(tup2int(temp2[j])) not in Prime_arr:
@@ -47,5 +46,6 @@ for i in Prime_arr:
     if INDEX!=1:
         counter+=1
         print(i)
+print()
 print(counter)
 print('ENDE')
