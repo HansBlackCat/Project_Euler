@@ -16,4 +16,5 @@ F=np.sort(list(D))
 list(F)==[f'{i}' for i in range(1,10)]
 """
 def Pandig(n):
+    pass
 
