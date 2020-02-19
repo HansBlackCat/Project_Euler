@@ -1,6 +1,8 @@
 import Data.Char
 import Data.List
 
+main = f008t
+
 f008 = do
     str <- readFile "008.txt"
     print. maximum. map product
@@ -8,7 +10,10 @@ f008 = do
          . take 13. tails. map (fromIntegral. digitToInt)
          . concat. lines$ str
 
-wtf = do
+
+f008t = do
     str <- readFile "008.txt"
-    print{--. foldr (zipWith (:)) (repeat []). take 13. tails--}
-         . map (fromIntegral. digitToInt). concat. lines$ str
+    print. maximum. map product
+         . transpose
+         . take 13. tails. map (fromIntegral. digitToInt)
+         . concat. lines$ str

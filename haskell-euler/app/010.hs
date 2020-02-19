@@ -1,4 +1,6 @@
 
+main = print $ f010
+
 f010 = sum (takeWhile(<1000000) primes)
 
 primes = 2:filter (null. tail. primeFactors) [3,5..]

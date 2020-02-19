@@ -20,3 +20,4 @@ addE (a,b) (c,d) = (a*d + b*c - 4*ac, ac + b*d)
         where ac = a*c
 times2E (a,b) = addE (a,b) (a,b)
 
+
